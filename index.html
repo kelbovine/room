@@ -1,1 +1,196 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room info gtc</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Google Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    height: 100vh;
+    margin: 0;
+    padding-top: 20px; 
+    background-color: #f0f2f5;
+    transition: background-color 0.3s;
+    overflow-y: auto; 
+}
+       .container {
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    margin-bottom: 20px; 
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+        h3, h4 {
+            margin: 0;
+            color: #6a1b9a;
+        }
+        h3 {
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        h4 {
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        th {
+            background-color: #6a1b9a;
+            color: #ffffff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:nth-child(odd) {
+            background-color: #fff0f7;
+        }
+        td {
+            color: #4a4a4a;
+        }
+        .vagas {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 0px;
+            padding: 6px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .sala-muito-cheia {
+            background-color: #b71c1c;
+            color: #ffffff;
+        }
+        .sala-cheia {
+            background-color: #e53935;
+            color: #ffffff;
+        }
+        .sala-disponivel {
+            background-color: #43a047;
+            color: #ffffff;
+        }
+        .sala-vazia {
+            background-color: #757575;
+            color: #ffffff;
+        }
+        .erro {
+            color: #e53935;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .erro svg {
+            margin-right: 10px;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .dark-mode .container {
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .dark-mode h3, .dark-mode h4 {
+            color: #bb86fc;
+        }
+        .dark-mode th {
+            background-color: #3700b3;
+        }
+        .dark-mode tr:nth-child(even) {
+            background-color: #333333;
+        }
+        .dark-mode tr:nth-child(odd) {
+            background-color: #2c2c2c;
+        }
+        .dark-mode td {
+            color: #e0e0e0;
+        }
+        .dark-mode .erro {
+            color: #cf6679;
+        }
+       #toggleMode {
+    position: fixed; 
+    top: 20px;
+    left: 20px;
+    background-color: #6200ea;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+        #toggleMode:hover {
+            background-color: #3700b3;
+        }
+        img.avatar {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggleMode">Modo Escuro</button>
+
+    <div id="erroSala" class="erro" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m0-4h.01M12 18.5A5.5 5.5 0 106.5 13 5.5 5.5 0 0012 18.5z" />
+        </svg>
+        <span>Número da sala não especificado na URL.</span>
+    </div>
+
+    <div class="container" id="containerInfo">
+        <h3 id="tituloInfo">Informações da Sala</h3>
+        <h4 id="nomeSala">Nome da Sala Número</h4>
+        <table id="tabelaInfo" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Jogador</th>
+                    <th>Pontos</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaJogadores">
+            </tbody>
+        </table>
+        <p id="vagasDisponiveis" class="vagas"></p>
+        <p><strong>Espere aqui até quando tiver vaga disponível.</strong>  ^^</p>
+<p style="color: black; font-size: 12px;">
+    Daí só fechar no X e clicar em entrar do jogo.
+</p>
+<p style="color: red; border: 2px solid red; padding: 10px; font-size: 12px;">
+    <strong>ATENÇÃO:</strong> Se insistir em clicar muito em entrar, mesmo estando cheia, você será bloqueado! O desbloqueio pode levar de 30 a 40 minutos.
+</p>
+<p style="color: red; border: 2px solid red; padding: 10px; font-size: 12px;">
+    <strong>ATUALIZAÇÃO PARA 6.2 RZ :</strong> consulte ao Criador do mod, Intocado, ou com alguem que recebu, para atualiza-lo.
+    </p>
+    <p style="color: red; border: 2px solid red; padding: 10px; font-size: 12px;">
+    <strong>FAÇA SEU FORMULÁRIO  <a href="https://forms.gle/eKCg3NLdWvzonFuv5"</a> :</strong> é para futuras cores, deixo com vocês escolherem. o mais repetido em cores, leva.
+    </p>
+
+</div>
+    <script>
+const _0x4651f8=_0x53c6;(function(_0x3e56b5,_0xbc1c24){const _0x55f05b=_0x53c6,_0x5f2056=_0x3e56b5();while(!![]){try{const _0x13c1a8=parseInt(_0x55f05b(0x84))/0x1*(-parseInt(_0x55f05b(0x85))/0x2)+parseInt(_0x55f05b(0x9e))/0x3+-parseInt(_0x55f05b(0x65))/0x4+parseInt(_0x55f05b(0x96))/0x5+-parseInt(_0x55f05b(0x8e))/0x6+parseInt(_0x55f05b(0x89))/0x7+-parseInt(_0x55f05b(0x93))/0x8*(-parseInt(_0x55f05b(0x9d))/0x9);if(_0x13c1a8===_0xbc1c24)break;else _0x5f2056['push'](_0x5f2056['shift']());}catch(_0x47448a){_0x5f2056['push'](_0x5f2056['shift']());}}}(_0x2e32,0x72f84));function atualizarTextoVagas(_0x8516ba,_0x5a3337){const _0x39c434=_0x53c6,_0x6b831e=0xa-_0x5a3337;if(_0x5a3337>0xa)_0x8516ba[_0x39c434(0x68)]=_0x39c434(0x78),_0x8516ba[_0x39c434(0x6e)]=_0x39c434(0x88);else{if(_0x5a3337===0xa)_0x8516ba[_0x39c434(0x68)]='Sala\x20cheia',_0x8516ba['className']=_0x39c434(0x94);else{if(_0x6b831e>0x1)_0x8516ba[_0x39c434(0x68)]=_0x39c434(0x69)+_0x6b831e+_0x39c434(0x9c),_0x8516ba[_0x39c434(0x6e)]=_0x39c434(0x74);else{if(_0x6b831e===0x1)_0x8516ba[_0x39c434(0x68)]=_0x39c434(0x7b),_0x8516ba[_0x39c434(0x6e)]='vagas\x20sala-disponivel';else _0x5a3337===0x0&&(_0x8516ba[_0x39c434(0x68)]='Sala\x20vazia',_0x8516ba['className']=_0x39c434(0x98));}}}}function _0x53c6(_0x306a24,_0x2250eb){const _0x2e3239=_0x2e32();return _0x53c6=function(_0x53c659,_0x390339){_0x53c659=_0x53c659-0x64;let _0xb659a6=_0x2e3239[_0x53c659];return _0xb659a6;},_0x53c6(_0x306a24,_0x2250eb);}function atualizarDados(){const _0x4ce97d=_0x53c6,_0x552bd=new URLSearchParams(window[_0x4ce97d(0x67)][_0x4ce97d(0x6f)]),_0x14c9bf=_0x552bd[_0x4ce97d(0x6b)]('idsala');if(!_0x14c9bf){document[_0x4ce97d(0x99)](_0x4ce97d(0x79))[_0x4ce97d(0x92)]['display']=_0x4ce97d(0x9a),document[_0x4ce97d(0x99)](_0x4ce97d(0x86))[_0x4ce97d(0x92)][_0x4ce97d(0x6a)]=_0x4ce97d(0x81);return;}fetch(_0x4ce97d(0x75)+_0x14c9bf)[_0x4ce97d(0x77)](_0x8cff64=>_0x8cff64[_0x4ce97d(0x7e)]())[_0x4ce97d(0x77)](_0x169b4a=>{const _0x376fe8=_0x4ce97d;if(_0x169b4a[_0x376fe8(0x7c)]!=='Gartic'){document[_0x376fe8(0x99)](_0x376fe8(0x79))[_0x376fe8(0x92)][_0x376fe8(0x6a)]=_0x376fe8(0x9a),document[_0x376fe8(0x99)]('erroSala')[_0x376fe8(0x92)][_0x376fe8(0x6a)]=_0x376fe8(0x81),document[_0x376fe8(0x99)](_0x376fe8(0x86))[_0x376fe8(0x8d)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20fill=\x22none\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20stroke=\x22currentColor\x22\x20width=\x2224\x22\x20height=\x2224\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M13\x2016h-1v-4h-1m0-4h.01M12\x2018.5A5.5\x205.5\x200\x20106.5\x2013\x205.5\x205.5\x200\x200012\x2018.5z\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Esta\x20página\x20só\x20é\x20compatível\x20com\x20salas\x20oficiais\x20do\x20Gartic.</span>';return;}const _0x5035ab=document[_0x376fe8(0x99)](_0x376fe8(0x97));_0x5035ab[_0x376fe8(0x68)]=''+_0x169b4a['nome'];const _0x493a1b=_0x169b4a[_0x376fe8(0x66)],_0x452221=_0x169b4a[_0x376fe8(0x8c)],_0x263a6c=document[_0x376fe8(0x99)](_0x376fe8(0x73)),_0x330304=document[_0x376fe8(0x99)](_0x376fe8(0x82));_0x263a6c[_0x376fe8(0x8d)]='',_0x493a1b[_0x376fe8(0x95)]((_0x4e8307,_0xfe0fe)=>{const _0x222fa4=_0x376fe8;if(_0xfe0fe<0xa){const _0x313207=document[_0x222fa4(0x6c)]('tr'),_0x2c9784=document[_0x222fa4(0x6c)]('td'),_0x13ecc0=document[_0x222fa4(0x6c)]('td'),_0x3c63d4=document[_0x222fa4(0x6c)]('td');_0x2c9784[_0x222fa4(0x68)]=_0xfe0fe+0x1;const _0xe7a66c=document[_0x222fa4(0x6c)](_0x222fa4(0x8a));_0xe7a66c[_0x222fa4(0x6e)]=_0x222fa4(0x87);const _0x23165f='https://www.gartik.com/avatar.php?nick='+_0x4e8307+_0x222fa4(0x8f);_0xe7a66c[_0x222fa4(0x80)]=_0x23165f,_0x13ecc0[_0x222fa4(0x91)](_0xe7a66c),_0x13ecc0[_0x222fa4(0x91)](document[_0x222fa4(0x70)](_0x4e8307)),_0x3c63d4[_0x222fa4(0x68)]=_0x452221[_0xfe0fe],_0x313207[_0x222fa4(0x91)](_0x2c9784),_0x313207[_0x222fa4(0x91)](_0x13ecc0),_0x313207[_0x222fa4(0x91)](_0x3c63d4),_0x263a6c['appendChild'](_0x313207);}});const _0x25a56b=_0x493a1b['length'];atualizarTextoVagas(_0x330304,_0x25a56b),document[_0x376fe8(0x99)]('tabelaInfo')[_0x376fe8(0x92)][_0x376fe8(0x6a)]=_0x376fe8(0x7a);})[_0x4ce97d(0x7f)](_0x5cc4fe=>console[_0x4ce97d(0x64)](_0x4ce97d(0x8b),_0x5cc4fe));}function toggleDarkMode(){const _0x3abbc5=_0x53c6;document[_0x3abbc5(0x7d)][_0x3abbc5(0x9b)]['toggle'](_0x3abbc5(0x76));const _0xf3cf3f=document[_0x3abbc5(0x99)](_0x3abbc5(0x6d));document['body'][_0x3abbc5(0x9b)][_0x3abbc5(0x90)]('dark-mode')?_0xf3cf3f[_0x3abbc5(0x68)]='Modo\x20Claro':_0xf3cf3f[_0x3abbc5(0x68)]=_0x3abbc5(0x83);}document[_0x4651f8(0x99)](_0x4651f8(0x6d))[_0x4651f8(0x71)]('click',toggleDarkMode),window[_0x4651f8(0x72)]=function(){atualizarDados(),setInterval(atualizarDados,0x1f4);};function _0x2e32(){const _0x37e4b0=['src','flex','vagasDisponiveis','Modo\x20Escuro','1RGgHtf','509378YTwrEu','erroSala','avatar','vagas\x20sala-muito-cheia','2009105nWdmWx','img','Erro\x20ao\x20buscar\x20informações\x20da\x20sala:','pontos','innerHTML','5066520PmmJNd','&app=1&rand=c479102.png','contains','appendChild','style','1448iAQBxR','vagas\x20sala-cheia','forEach','2896370WmXHaV','nomeSala','vagas\x20sala-vazia','getElementById','none','classList','\x20vagas\x20disponíveis','4347RbvqgV','2538144krCgKJ','error','918940vJLrDo','jogadores','location','textContent','Há\x20','display','get','createElement','toggleMode','className','search','createTextNode','addEventListener','onload','tabelaJogadores','vagas\x20sala-disponivel','https://www.gartik.com/info_sala.php?x=&id_sala=','dark-mode','then','Sala\x20muito\x20cheia','containerInfo','table','Há\x201\x20vaga\x20disponível','criador','body','json','catch'];_0x2e32=function(){return _0x37e4b0;};return _0x2e32();}
+</script>
+    </body>
+</html>
