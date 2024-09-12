@@ -211,11 +211,11 @@
 }
 
 #trocaAvatarBtn {
-    left: -40px; /* Alinha a seta de troca ao lado esquerdo do avatar */
+    left: calc(-40px - 24px); /* Posiciona a seta de troca à esquerda do modal */
 }
 
 #voltarAvatarBtn {
-    right: -40px; /* Alinha a seta de voltar ao lado direito do avatar */
+    right: calc(-40px - 24px); /* Posiciona a seta de voltar à direita do modal */
 }
 
 @media (max-width: 600px) {
@@ -226,8 +226,8 @@
 
     #trocaAvatarBtn, #voltarAvatarBtn {
         font-size: 20px;
-        left: -20px; /* Ajusta o posicionamento para telas menores */
-        right: -20px; /* Ajusta o posicionamento para telas menores */
+        left: calc(-20px - 20px); /* Ajusta a posição das setas em telas menores */
+        right: calc(-20px - 20px); /* Ajusta a posição das setas em telas menores */
     }
 
     #modalAvatar {
