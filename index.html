@@ -163,14 +163,12 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    max-width: 90%;
-    width: 100%;
+    width: auto; /* Ajusta o tamanho baseado no conteúdo */
+    max-width: 90%; /* Limita a largura para dispositivos móveis */
     text-align: center;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     box-sizing: border-box;
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites do modal */
 }
 
 #modalAvatarContainer {
@@ -184,7 +182,7 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin: 0; /* Remove a margem para melhor alinhamento */
+    margin: 0;
 }
 
 #modalBio, #modalPontos, #modalVitorias {
@@ -222,14 +220,14 @@
 
 @media (max-width: 600px) {
     #modal {
-        max-width: 100%;
+        max-width: calc(100% - 80px); /* Ajusta a largura do modal para levar em conta as setas */
         padding: 10px;
     }
 
     #trocaAvatarBtn, #voltarAvatarBtn {
         font-size: 20px;
-        left: -30px;
-        right: -30px;
+        left: -20px; /* Ajusta o posicionamento para telas menores */
+        right: -20px; /* Ajusta o posicionamento para telas menores */
     }
 
     #modalAvatar {
