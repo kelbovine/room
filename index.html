@@ -159,6 +159,17 @@
     z-index: 1000;
 }
 
+#modalContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px; /* Adiciona espaço para as setas */
+    box-sizing: border-box;
+}
+
 #modal {
     background-color: #fff;
     padding: 20px;
@@ -168,7 +179,6 @@
     text-align: center;
     position: relative;
     box-sizing: border-box;
-    overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites do modal */
     z-index: 1001; /* Garante que o modal fique acima das setas */
 }
 
@@ -199,21 +209,25 @@
     cursor: pointer;
     background: none;
     border: none;
-    position: fixed; /* Fixar as setas fora do modal */
+    position: absolute; /* Position setas ao lado do modal */
     top: 50%;
     transform: translateY(-50%);
-    z-index: 1000; /* Garante que as setas estejam acima do modal */
+    z-index: 1000; /* Garante que as setas fiquem abaixo do modal */
 }
 
 #trocaAvatarBtn {
-    left: 10px; /* Ajusta a posição para a esquerda da tela */
+    left: -50px; /* Ajusta a posição para a esquerda do modal */
 }
 
 #voltarAvatarBtn {
-    right: 10px; /* Ajusta a posição para a direita da tela */
+    right: -50px; /* Ajusta a posição para a direita do modal */
 }
 
 @media (max-width: 600px) {
+    #modalContainer {
+        padding: 0 10px; /* Ajusta o espaçamento das setas em telas menores */
+    }
+
     #modal {
         max-width: calc(100% - 80px); /* Ajusta a largura do modal para levar em conta as setas */
         padding: 10px;
@@ -221,8 +235,8 @@
 
     #trocaAvatarBtn, #voltarAvatarBtn {
         font-size: 20px;
-        left: 5px; /* Ajusta a posição das setas em telas menores */
-        right: 5px; /* Ajusta a posição das setas em telas menores */
+        left: 0; /* Ajusta a posição das setas em telas menores */
+        right: 0; /* Ajusta a posição das setas em telas menores */
     }
 
     #modalAvatar {
@@ -240,15 +254,17 @@
     <button id="toggleMode">Modo Escuro</button>
 
 <div id="modalOverlay">
-    <div id="modal">
-        <button id="closeModal">✖</button>
+    <div id="modalContainer">
         <button id="trocaAvatarBtn">◀</button>
+        <div id="modal">
+            <button id="closeModal">✖</button>
+            <img id="modalAvatar" src="" alt="Avatar">
+            <h3 id="modalNomeJogador"></h3>
+            <p id="modalBio"></p>
+            <p id="modalPontos"></p>
+            <p id="modalVitorias"></p>
+        </div>
         <button id="voltarAvatarBtn">▶</button>
-        <img id="modalAvatar" src="" alt="Avatar">
-        <h3 id="modalNomeJogador"></h3>
-        <p id="modalBio"></p>
-        <p id="modalPontos"></p>
-        <p id="modalVitorias"></p>
     </div>
 </div>
 
