@@ -159,19 +159,6 @@
     z-index: 1000;
 }
 
-#modalOverlay {
-    display: none; /* O modal não aparece imediatamente */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
 #modalContainer {
     display: flex;
     align-items: center;
@@ -229,11 +216,11 @@
 }
 
 #trocaAvatarBtn {
-    left: 10px; /* Ajusta a posição para a esquerda do contêiner do modal */
+    left: -60px; /* Ajusta a posição para a esquerda do contêiner do modal */
 }
 
 #voltarAvatarBtn {
-    right: 10px; /* Ajusta a posição para a direita do contêiner do modal */
+    right: -60px; /* Ajusta a posição para a direita do contêiner do modal */
 }
 
 @media (max-width: 600px) {
@@ -248,8 +235,8 @@
 
     #trocaAvatarBtn, #voltarAvatarBtn {
         font-size: 20px;
-        left: 5px; /* Ajusta a posição das setas em telas menores */
-        right: 5px; /* Ajusta a posição das setas em telas menores */
+        left: -30px; /* Ajusta a posição das setas em telas menores */
+        right: -30px; /* Ajusta a posição das setas em telas menores */
     }
 
     #modalAvatar {
