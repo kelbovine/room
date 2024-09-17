@@ -14,7 +14,7 @@
         height: 100vh;
         margin: 0;
         padding-top: 20px;
-        background-color: #3a0d6b; /* Cor roxo escuro */
+        background-color: #3a0d6b; 
         transition: background-color 0.3s;
         overflow-y: auto;
     }
@@ -130,14 +130,14 @@
         background-color: #d1c4e9; /* Cor diferente para o modal */
         padding: 20px;
         border-radius: 8px;
-        max-width: 90%; /* Responsividade */
+        max-width: 90%; 
         width: auto;
         text-align: center;
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
-        box-sizing: border-box; /* Ajuste ao conteúdo */
+        box-sizing: border-box; 
     }
 
     #modalAvatarContainer {
@@ -211,7 +211,7 @@
         vertical-align: middle;
     }
 
-    /* Estilos para modo escuro */
+    
     .dark-mode {
         background-color: #121212;
         color: #e0e0e0;
@@ -290,7 +290,7 @@
         <p style="color: black; font-size: 12px;">
     Daí só fechar no X e clicar em entrar do jogo.
         </p>
-        <p><strong>Agora você pode flicar no avatar de algum jogador para abrir  o perfil lite.</strong>  ^^</p>
+        <p><strong>Agora você pode clicar no avatar de algum jogador para abrir  o perfil lite.</strong>  ^^</p>
 
 <p style="color: red; border: 2px solid red; padding: 10px; font-size: 12px;">
     <strong>ATENÇÃO:</strong> Se insistir em clicar muito em entrar, mesmo estando cheia, você será bloqueado! O desbloqueio pode levar de 30 a 40 minutos.
@@ -301,7 +301,7 @@
 </div>
     <script>
     let intervaloAtualizacao;
-    let avatarAtual = 'original'; // Variável para controlar qual avatar está ativo
+    let avatarAtual = 'original'; 
 
         function atualizarDados() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -394,14 +394,14 @@ function exibirModalJogador(jogador) {
                 document.getElementById('modalNomeJogador').textContent = jogador;
                 const avatarImg = document.getElementById('modalAvatar');
 
-                // Manter o avatar selecionado conforme o estado atual
+                
                 if (avatarAtual === 'original') {
                     avatarImg.src = `https://www.gartik.com/avatar.php?nick=${jogador}&app=1&rand=c479102.png`;
                 } else if (avatarAtual === 'alternativo') {
                     avatarImg.src = `https://www.gartik.com/avatar.php?nick=${jogador}&app=1&rand=c4747_18&pendente=1`;
                 }
 
-                // Função para decodificar entidades HTML
+                
                 function decodeHTML(html) {
                     const txt = document.createElement('textarea');
                     txt.innerHTML = html;
