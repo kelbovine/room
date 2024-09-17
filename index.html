@@ -348,7 +348,7 @@
                         const avatarImg = document.createElement('img');
                         avatarImg.className = 'avatar';
                         avatarImg.setAttribute('data-jogador', jogador);
-                        const avatarUrl = `https://gartic.com.br/avatar.php?nick=${jogador}&app=1&rand=c479102.png`;
+                        const avatarUrl = `https://www.gartik.com/avatar.php?nick=${jogador}&app=1&rand=c479102.png`;
                         avatarImg.src = avatarUrl;
 
                         jogadorCell.appendChild(avatarImg);
@@ -397,7 +397,7 @@ function exibirModalJogador(jogador) {
                 if (avatarAtual === 'original') {
                     avatarImg.src = `https://www.gartik.com/avatar.php?nick=${jogador}&app=1&rand=c479102.png`;
                 } else if (avatarAtual === 'alternativo') {
-                    avatarImg.src = `https://gartic.com.br/avatar.php?nick=${jogador}&app=1&rand=c4747_18&pendente=1`;
+                    avatarImg.src = `https://www.gartik.com/avatar.php?nick=${jogador}&app=1&rand=c4747_18&pendente=1`;
                 }
 
                 // Função para decodificar entidades HTML
@@ -431,12 +431,12 @@ function exibirModalJogador(jogador) {
 
     document.getElementById('trocaAvatarBtn').addEventListener('click', function () {
         avatarAtual = 'alternativo';
-        document.getElementById('modalAvatar').src = `gartic.com.br/avatar.php?nick=${document.getElementById('modalNomeJogador').textContent}&app=1&rand=c4747_18&pendente=1`;
+        document.getElementById('modalAvatar').src = `https://wwww.gartik.com/avatar.php?nick=${document.getElementById('modalNomeJogador').textContent}&app=1&rand=c4747_18&pendente=1`;
     });
 
     document.getElementById('voltarAvatarBtn').addEventListener('click', function () {
         avatarAtual = 'original';
-        document.getElementById('modalAvatar').src = `gartic.com.br/avatar.php?nick=${document.getElementById('modalNomeJogador').textContent}&app=1&rand=c4747_18.png`;
+        document.getElementById('modalAvatar').src = `https://www.gartik.com/avatar.php?nick=${document.getElementById('modalNomeJogador').textContent}&app=1&rand=c4747_18.png`;
     });
 
     document.addEventListener('click', function (e) {
