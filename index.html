@@ -6,265 +6,204 @@
     <title>Room info gtc</title>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-    font-family: 'Google Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; 
-    height: 100vh;
-    margin: 0;
-    padding-top: 20px; 
-    background-color: #f0f2f5;
-    transition: background-color 0.3s;
-    overflow-y: auto; 
-}
-       .container {
-    text-align: center;
-    width: 90%;
-    max-width: 600px;
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    margin-bottom: 20px; 
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-        h3, h4 {
-            margin: 0;
-            color: #6a1b9a;
-        }
-        h3 {
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        h4 {
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #e0e0e0;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        th {
-            background-color: #6a1b9a;
-            color: #ffffff;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:nth-child(odd) {
-            background-color: #fff0f7;
-        }
-        td {
-            color: #4a4a4a;
-        }
-        .vagas {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-top: 0px;
-            padding: 6px;
-            border-radius: 8px;
-            display: inline-block;
-        }
-        .sala-muito-cheia {
-            background-color: #b71c1c;
-            color: #ffffff;
-        }
-        .sala-cheia {
-            background-color: #e53935;
-            color: #ffffff;
-        }
-        .sala-disponivel {
-            background-color: #43a047;
-            color: #ffffff;
-        }
-        .sala-vazia {
-            background-color: #757575;
-            color: #ffffff;
-        }
-        .erro {
-            color: #e53935;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .erro svg {
-            margin-right: 10px;
-        }
-        .dark-mode {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        .dark-mode .container {
-            background-color: #1e1e1e;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-        .dark-mode h3, .dark-mode h4 {
-            color: #bb86fc;
-        }
-        .dark-mode th {
-            background-color: #3700b3;
-        }
-        .dark-mode tr:nth-child(even) {
-            background-color: #333333;
-        }
-        .dark-mode tr:nth-child(odd) {
-            background-color: #2c2c2c;
-        }
-        .dark-mode td {
-            color: #e0e0e0;
-        }
-        .dark-mode .erro {
-            color: #cf6679;
-        }
-       #toggleMode {
-    position: fixed; 
-    top: 20px;
-    left: 20px;
-    background-color: #6200ea;
-    color: #ffffff;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-        #toggleMode:hover {
-            background-color: #3700b3;
-        }
-        img.avatar {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-#modalOverlay {
-    display: none; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
+    body {
+        font-family: 'Google Sans', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+        margin: 0;
+        padding-top: 20px;
+        background-color: #3a0d6b; /* Cor roxo escuro */
+        transition: background-color 0.3s;
+        overflow-y: auto;
+    }
 
-#modalContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    padding: 0 50px; 
-    box-sizing: border-box;
-}
+    .container {
+        text-align: center;
+        width: 90%;
+        max-width: 600px;
+        background-color: #ffebee; /* Cor do container */
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        margin-bottom: 20px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
 
-#modal {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: auto; 
-    max-width: 80%; 
-    text-align: center;
-    position: relative;
-    box-sizing: border-box;
-    z-index: 1001;
-}
+    h3, h4 {
+        margin: 0;
+        color: #6a1b9a;
+    }
 
-#modalAvatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 0 auto;
-}
+    h3 {
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
 
-#modalBio, #modalPontos, #modalVitorias {
-    margin-top: 10px;
-    font-size: 16px;
-}
+    h4 {
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
 
-#closeModal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    background: none;
-    border: none;
-}
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
 
-#trocaAvatarBtn, #voltarAvatarBtn {
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000; 
-}
+    th, td {
+        padding: 10px;
+        border: 1px solid #e0e0e0;
+        transition: background-color 0.3s, color 0.3s;
+    }
 
-#trocaAvatarBtn {
-    left: -60px; 
-}
+    th {
+        background-color: #6a1b9a;
+        color: #ffffff;
+    }
 
-#voltarAvatarBtn {
-    right: -60px; 
-}
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 
-@media (max-width: 600px) {
-    #modalContainer {
-        padding: 0 20px; 
+    tr:nth-child(odd) {
+        background-color: #fff0f7;
+    }
+
+    td {
+        color: #4a4a4a;
+    }
+
+    .vagas {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-top: 0px;
+        padding: 6px;
+        border-radius: 8px;
+        display: inline-block;
+    }
+
+    .erro {
+        color: #e53935;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    #modalOverlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
     }
 
     #modal {
-        max-width: calc(100% - 80px); 
-        padding: 10px;
+        background-color: #d1c4e9; /* Cor diferente para o modal */
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 90%;
+        width: 90%;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    #trocaAvatarBtn, #voltarAvatarBtn {
-        font-size: 20px;
-        left: -30px; 
-        right: -30px; 
+    #modalAvatarContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
     }
 
     #modalAvatar {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 20px;
     }
 
     #modalBio, #modalPontos, #modalVitorias {
-        font-size: 14px;
+        margin-top: 10px;
+        font-size: 16px;
     }
-}
-    </style>
+
+    #closeModal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        background: none;
+        border: none;
+    }
+
+    #trocaAvatarBtn, #voltarAvatarBtn {
+        font-size: 24px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #trocaAvatarBtn {
+        left: 10px; /* Garantir que o botão não passe da tela */
+    }
+
+    #voltarAvatarBtn {
+        right: 10px; /* Garantir que o botão não passe da tela */
+    }
+
+    #toggleMode {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #6200ea;
+        color: #ffffff;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #toggleMode:hover {
+        background-color: #3700b3;
+    }
+
+    img.avatar {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+</style>
 </head>
 <body>
     <button id="toggleMode">Modo Escuro</button>
 
 <div id="modalOverlay">
-    <div id="modalContainer">
+    <div id="modal">
+        <button id="closeModal">✖</button>
         <button id="trocaAvatarBtn">◀</button>
-        <div id="modal">
-            <button id="closeModal">✖</button>
-            <img id="modalAvatar" src="" alt="Avatar">
-            <h3 id="modalNomeJogador"></h3>
-            <p id="modalBio"></p>
-            <p id="modalPontos"></p>
-            <p id="modalVitorias"></p>
-        </div>
         <button id="voltarAvatarBtn">▶</button>
+        <img id="modalAvatar" src="" alt="Avatar">
+        <h3 id="modalNomeJogador"></h3>
+        <p id="modalBio"></p>
+        <p id="modalPontos"></p>
+        <p id="modalVitorias"></p>
     </div>
 </div>
 
@@ -292,8 +231,9 @@
         </table>
         <p id="vagasDisponiveis" class="vagas"></p>
         <p><strong>Espere aqui até quando tiver vaga disponível.</strong>  ^^</p>
-        <p><strong>Daí só fechar no X e clicar em entrar do jogo.</strong> </p>
-                <p><strong>Agora você pode clicar no avatar de algum jogador para abrir o perfil lite.</strong> </p>
+        <p><strong>Agora você pode flicar no avatar de algum jogador para abrir  o perfil lite.</strong>  ^^</p>
+<p style="color: black; font-size: 12px;">
+    Daí só fechar no X e clicar em entrar do jogo.
 </p>
 <p style="color: red; border: 2px solid red; padding: 10px; font-size: 12px;">
     <strong>ATENÇÃO:</strong> Se insistir em clicar muito em entrar, mesmo estando cheia, você será bloqueado! O desbloqueio pode levar de 30 a 40 minutos.
@@ -301,10 +241,165 @@
 <p style="color: red; border: 2px solid red; padding: 10px; font-size: 12px;">
     <strong>ATUALIZAÇÃO PARA 6.5 RZ :</strong> consulte ao Criador do mod, Intocado, ou com alguem que recebu, para atualiza-lo.
     </p>
-
 </div>
     <script>
-    const _0x35f629=_0x5b8e;(function(_0x45ee7e,_0x91ac61){const _0x5003e0=_0x5b8e,_0x1ce1fe=_0x45ee7e();while(!![]){try{const _0x4bb0b7=parseInt(_0x5003e0(0x11c))/0x1*(-parseInt(_0x5003e0(0x128))/0x2)+parseInt(_0x5003e0(0x11d))/0x3+parseInt(_0x5003e0(0x130))/0x4*(parseInt(_0x5003e0(0xfe))/0x5)+-parseInt(_0x5003e0(0x11f))/0x6*(parseInt(_0x5003e0(0x141))/0x7)+parseInt(_0x5003e0(0xfc))/0x8*(-parseInt(_0x5003e0(0x10f))/0x9)+parseInt(_0x5003e0(0x14c))/0xa+parseInt(_0x5003e0(0x10a))/0xb*(-parseInt(_0x5003e0(0xfb))/0xc);if(_0x4bb0b7===_0x91ac61)break;else _0x1ce1fe['push'](_0x1ce1fe['shift']());}catch(_0x5cd977){_0x1ce1fe['push'](_0x1ce1fe['shift']());}}}(_0xc998,0xf35c2));function _0x5b8e(_0x16d857,_0x335dc7){const _0xc99876=_0xc998();return _0x5b8e=function(_0x5b8efb,_0x5c3b2e){_0x5b8efb=_0x5b8efb-0xf9;let _0xd17a9b=_0xc99876[_0x5b8efb];return _0xd17a9b;},_0x5b8e(_0x16d857,_0x335dc7);}function _0xc998(){const _0x3be238=['95EJcSxu','modalPontos','Sala\x20vazia','length','classList','tabelaJogadores','nome','get','vagas\x20sala-muito-cheia','original','vagas\x20sala-vazia','error','498124VrwNZp','erroSala','location','voltarAvatarBtn','contains','94617QVQfgz','json','frase','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<svg\x20xmlns=\x22http://www.w3.org/2000/svg\x22\x20fill=\x22none\x22\x20viewBox=\x220\x200\x2024\x2024\x22\x20stroke=\x22currentColor\x22\x20width=\x2224\x22\x20height=\x2224\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<path\x20stroke-linecap=\x22round\x22\x20stroke-linejoin=\x22round\x22\x20stroke-width=\x222\x22\x20d=\x22M13\x2016h-1v-4h-1m0-4h.01M12\x2018.5A5.5\x205.5\x200\x20106.5\x2013\x205.5\x205.5\x200\x200012\x2018.5z\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</svg>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>Esta\x20página\x20só\x20é\x20compatível\x20com\x20salas\x20oficiais\x20do\x20Gartic.</span>','Sem\x20bio\x20disponível','modalVitorias','tabelaInfo','Há\x20','body','https://www.gartik.com/info_sala.php?x=&id_sala=','table','toggle','className','22323YsjudC','4028970yNhPqS','\x20vagas\x20disponíveis','1253334fRJkBd','none','Sala\x20muito\x20cheia','src','alternativo','https://www.gartik.com/avatar.php?nick=','trocaAvatarBtn','Sala\x20cheia','appendChild','100JNVrnq','img','dark-mode','toggleMode','display','getAttribute','modalNomeJogador','criador','187348kgpQEX','closeModal','&app=1&rand=c479102.png','forEach','Há\x201\x20vaga\x20disponível','containerInfo','textContent','Erro\x20ao\x20buscar\x20informações\x20da\x20sala:','modalAvatar','createElement','vitorias','vagas\x20sala-cheia','nomeSala','click','vagas\x20sala-disponivel','flex','style','21AAVNzY','avatar','innerHTML','modalOverlay','jogadores','Gartic','addEventListener','then','createTextNode','data-jogador','getElementById','9749450mCmlze','Pontos:\x20','pontos','&app=1&rand=c4747_18&pendente=1','target','60ybiDkf','184mNVADj','catch'];_0xc998=function(){return _0x3be238;};return _0xc998();}let intervaloAtualizacao,avatarAtual=_0x35f629(0x107);function atualizarDados(){const _0xe0f0d9=_0x35f629,_0x2072b6=new URLSearchParams(window[_0xe0f0d9(0x10c)]['search']),_0x1d6a29=_0x2072b6[_0xe0f0d9(0x105)]('idsala');if(!_0x1d6a29){document[_0xe0f0d9(0x14b)](_0xe0f0d9(0x135))[_0xe0f0d9(0x140)][_0xe0f0d9(0x12c)]=_0xe0f0d9(0x120),document[_0xe0f0d9(0x14b)]('erroSala')[_0xe0f0d9(0x140)][_0xe0f0d9(0x12c)]=_0xe0f0d9(0x13f);return;}fetch(_0xe0f0d9(0x118)+_0x1d6a29)['then'](_0x1efc40=>_0x1efc40[_0xe0f0d9(0x110)]())[_0xe0f0d9(0x148)](_0x1ad091=>{const _0x4215c3=_0xe0f0d9;if(_0x1ad091[_0x4215c3(0x12f)]!==_0x4215c3(0x146)){document[_0x4215c3(0x14b)](_0x4215c3(0x135))[_0x4215c3(0x140)][_0x4215c3(0x12c)]='none',document['getElementById'](_0x4215c3(0x10b))[_0x4215c3(0x140)][_0x4215c3(0x12c)]=_0x4215c3(0x13f),document[_0x4215c3(0x14b)](_0x4215c3(0x10b))[_0x4215c3(0x143)]=_0x4215c3(0x112);return;}const _0x1cb262=document[_0x4215c3(0x14b)](_0x4215c3(0x13c));_0x1cb262['textContent']=''+_0x1ad091[_0x4215c3(0x104)];const _0x28fdb5=_0x1ad091[_0x4215c3(0x145)],_0x157f53=_0x1ad091[_0x4215c3(0x14e)],_0x5e199b=document['getElementById'](_0x4215c3(0x103)),_0x40ec0a=document[_0x4215c3(0x14b)]('vagasDisponiveis');_0x5e199b[_0x4215c3(0x143)]='',_0x28fdb5[_0x4215c3(0x133)]((_0x10c387,_0x5ced6b)=>{const _0x53c87d=_0x4215c3;if(_0x5ced6b<0xa){const _0x507e54=document['createElement']('tr'),_0x3a4fec=document[_0x53c87d(0x139)]('td'),_0x41ea80=document[_0x53c87d(0x139)]('td'),_0x169a9d=document[_0x53c87d(0x139)]('td');_0x3a4fec[_0x53c87d(0x136)]=_0x5ced6b+0x1;const _0x3d3c1=document[_0x53c87d(0x139)](_0x53c87d(0x129));_0x3d3c1['className']=_0x53c87d(0x142),_0x3d3c1['setAttribute'](_0x53c87d(0x14a),_0x10c387);const _0x530736=_0x53c87d(0x124)+_0x10c387+_0x53c87d(0x132);_0x3d3c1['src']=_0x530736,_0x41ea80[_0x53c87d(0x127)](_0x3d3c1),_0x41ea80[_0x53c87d(0x127)](document[_0x53c87d(0x149)](_0x10c387)),_0x169a9d[_0x53c87d(0x136)]=_0x157f53[_0x5ced6b],_0x507e54[_0x53c87d(0x127)](_0x3a4fec),_0x507e54[_0x53c87d(0x127)](_0x41ea80),_0x507e54[_0x53c87d(0x127)](_0x169a9d),_0x5e199b[_0x53c87d(0x127)](_0x507e54);}});const _0x3b8a62=_0x28fdb5[_0x4215c3(0x101)];if(_0x3b8a62>0xa)_0x40ec0a[_0x4215c3(0x136)]=_0x4215c3(0x121),_0x40ec0a['className']=_0x4215c3(0x106);else{if(_0x3b8a62===0xa)_0x40ec0a[_0x4215c3(0x136)]=_0x4215c3(0x126),_0x40ec0a[_0x4215c3(0x11b)]=_0x4215c3(0x13b);else{if(_0x3b8a62<0xa&&_0x3b8a62>=0x2)_0x40ec0a[_0x4215c3(0x136)]=_0x4215c3(0x116)+(0xa-_0x3b8a62)+_0x4215c3(0x11e),_0x40ec0a[_0x4215c3(0x11b)]='vagas\x20sala-disponivel';else{if(_0x3b8a62===0x1)_0x40ec0a['textContent']=_0x4215c3(0x134),_0x40ec0a['className']=_0x4215c3(0x13e);else _0x3b8a62<0x1&&(_0x40ec0a['textContent']=_0x4215c3(0x100),_0x40ec0a['className']=_0x4215c3(0x108));}}}document[_0x4215c3(0x14b)](_0x4215c3(0x115))['style'][_0x4215c3(0x12c)]=_0x4215c3(0x119);})[_0xe0f0d9(0xfd)](_0x57bb11=>console['error'](_0xe0f0d9(0x137),_0x57bb11));}function exibirModalJogador(_0x41c2c3){const _0x308abb=_0x35f629;function _0x312daa(){const _0x1e6397=_0x5b8e;fetch('https://gartic.pics/r/profile?&login='+_0x41c2c3)[_0x1e6397(0x148)](_0x4a4cb2=>_0x4a4cb2[_0x1e6397(0x110)]())[_0x1e6397(0x148)](_0x3b2e9f=>{const _0x12b9cf=_0x1e6397;document[_0x12b9cf(0x14b)](_0x12b9cf(0x12e))[_0x12b9cf(0x136)]=_0x41c2c3;const _0x92104e=document[_0x12b9cf(0x14b)](_0x12b9cf(0x138));if(avatarAtual===_0x12b9cf(0x107))_0x92104e[_0x12b9cf(0x122)]='https://www.gartik.com/avatar.php?nick='+_0x41c2c3+_0x12b9cf(0x132);else avatarAtual===_0x12b9cf(0x123)&&(_0x92104e[_0x12b9cf(0x122)]=_0x12b9cf(0x124)+_0x41c2c3+_0x12b9cf(0xf9));document[_0x12b9cf(0x14b)]('modalBio')[_0x12b9cf(0x136)]=_0x3b2e9f[_0x12b9cf(0x111)]||_0x12b9cf(0x113),document[_0x12b9cf(0x14b)](_0x12b9cf(0xff))[_0x12b9cf(0x136)]=_0x12b9cf(0x14d)+(_0x3b2e9f[_0x12b9cf(0x14e)]||'0'),document[_0x12b9cf(0x14b)](_0x12b9cf(0x114))[_0x12b9cf(0x136)]='Vitórias:\x20'+(_0x3b2e9f[_0x12b9cf(0x13a)]||'0');})[_0x1e6397(0xfd)](_0x3a80b8=>console[_0x1e6397(0x109)]('Erro\x20ao\x20buscar\x20perfil\x20do\x20jogador:',_0x3a80b8));}intervaloAtualizacao&&clearInterval(intervaloAtualizacao),_0x312daa(),intervaloAtualizacao=setInterval(_0x312daa,0x2710),document[_0x308abb(0x14b)](_0x308abb(0x144))[_0x308abb(0x140)][_0x308abb(0x12c)]=_0x308abb(0x13f);}document['getElementById'](_0x35f629(0x131))[_0x35f629(0x147)](_0x35f629(0x13d),function(){const _0x587976=_0x35f629;document['getElementById']('modalOverlay')[_0x587976(0x140)]['display']=_0x587976(0x120),clearInterval(intervaloAtualizacao);}),document['getElementById'](_0x35f629(0x125))[_0x35f629(0x147)]('click',function(){const _0x51649d=_0x35f629;avatarAtual=_0x51649d(0x123),document['getElementById'](_0x51649d(0x138))[_0x51649d(0x122)]=_0x51649d(0x124)+document['getElementById']('modalNomeJogador')[_0x51649d(0x136)]+_0x51649d(0xf9);}),document[_0x35f629(0x14b)](_0x35f629(0x10d))['addEventListener'](_0x35f629(0x13d),function(){const _0x4e9ec9=_0x35f629;avatarAtual='original',document['getElementById'](_0x4e9ec9(0x138))[_0x4e9ec9(0x122)]=_0x4e9ec9(0x124)+document[_0x4e9ec9(0x14b)](_0x4e9ec9(0x12e))['textContent']+_0x4e9ec9(0x132);}),document[_0x35f629(0x147)]('click',function(_0x560685){const _0x150770=_0x35f629;if(_0x560685[_0x150770(0xfa)][_0x150770(0x102)][_0x150770(0x10e)](_0x150770(0x142))){const _0x109fe4=_0x560685[_0x150770(0xfa)][_0x150770(0x12d)](_0x150770(0x14a));exibirModalJogador(_0x109fe4);}});function toggleDarkMode(){const _0x1cea2d=_0x35f629;document[_0x1cea2d(0x117)][_0x1cea2d(0x102)][_0x1cea2d(0x11a)](_0x1cea2d(0x12a));}document[_0x35f629(0x14b)](_0x35f629(0x12b))[_0x35f629(0x147)](_0x35f629(0x13d),toggleDarkMode),atualizarDados(),setInterval(atualizarDados,0x1f4);
+    let intervaloAtualizacao;
+    let avatarAtual = 'original'; // Variável para controlar qual avatar está ativo
+
+        function atualizarDados() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const idSala = urlParams.get('idsala');
+
+            if (!idSala) {
+                document.getElementById('containerInfo').style.display = 'none';
+                document.getElementById('erroSala').style.display = 'flex';
+                return;
+            }
+
+            fetch(`https://www.gartik.com/info_sala.php?x=&id_sala=${idSala}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.criador !== "Gartic") {
+                        document.getElementById('containerInfo').style.display = 'none';
+                        document.getElementById('erroSala').style.display = 'flex';
+                        document.getElementById('erroSala').innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m0-4h.01M12 18.5A5.5 5.5 0 106.5 13 5.5 5.5 0 0012 18.5z" />
+                            </svg>
+                            <span>Esta página só é compatível com salas oficiais do Gartic.</span>`;
+                        return;
+                    }
+
+                    const nomeSala = document.getElementById('nomeSala');
+                    nomeSala.textContent = `${data.nome}`;
+
+                    const jogadores = data.jogadores;
+                    const pontos = data.pontos;
+                    const tabelaJogadores = document.getElementById('tabelaJogadores');
+                    const vagasDisponiveis = document.getElementById('vagasDisponiveis');
+
+                    tabelaJogadores.innerHTML = '';
+
+                   jogadores.forEach((jogador, index) => {
+                    if (index < 10) {
+                        const row = document.createElement('tr');
+                        const posicaoCell = document.createElement('td');
+                        const jogadorCell = document.createElement('td');
+                        const pontosCell = document.createElement('td');
+
+                        posicaoCell.textContent = index + 1;
+
+                        const avatarImg = document.createElement('img');
+                        avatarImg.className = 'avatar';
+                        avatarImg.setAttribute('data-jogador', jogador);
+                        const avatarUrl = `https://www.gartik.com/avatar.php?nick=${jogador}&app=1&rand=c479102.png`;
+                        avatarImg.src = avatarUrl;
+
+                        jogadorCell.appendChild(avatarImg);
+                        jogadorCell.appendChild(document.createTextNode(jogador));
+                        pontosCell.textContent = pontos[index];
+
+                        row.appendChild(posicaoCell);
+                        row.appendChild(jogadorCell);
+                        row.appendChild(pontosCell);
+                        tabelaJogadores.appendChild(row);
+                    }
+                });
+
+                    const numJogadores = jogadores.length;
+                    if (numJogadores > 10) {
+                        vagasDisponiveis.textContent = 'Sala muito cheia';
+                        vagasDisponiveis.className = 'vagas sala-muito-cheia';
+                    } else if (numJogadores === 10) {
+                        vagasDisponiveis.textContent = 'Sala cheia';
+                        vagasDisponiveis.className = 'vagas sala-cheia';
+                    } else if (numJogadores < 10 && numJogadores >= 2) {
+                        vagasDisponiveis.textContent = `Há ${10 - numJogadores} vagas disponíveis`;
+                        vagasDisponiveis.className = 'vagas sala-disponivel';
+                    } else if (numJogadores === 1) {
+                        vagasDisponiveis.textContent = 'Há 1 vaga disponível';
+                        vagasDisponiveis.className = 'vagas sala-disponivel';
+                    } else if (numJogadores < 1) {
+                        vagasDisponiveis.textContent = 'Sala vazia';
+                        vagasDisponiveis.className = 'vagas sala-vazia';
+                    }
+
+                    document.getElementById('tabelaInfo').style.display = 'table';
+                })
+                .catch(error => console.error('Erro ao buscar informações da sala:', error));
+        }
+
+function exibirModalJogador(jogador) {
+    function atualizarPerfil() {
+        fetch(`https://gartic.pics/r/profile?&login=${jogador}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('modalNomeJogador').textContent = jogador;
+                const avatarImg = document.getElementById('modalAvatar');
+
+                // Manter o avatar selecionado conforme o estado atual
+                if (avatarAtual === 'original') {
+                    avatarImg.src = `https://www.gartik.com/avatar.php?nick=${jogador}&app=1&rand=c479102.png`;
+                } else if (avatarAtual === 'alternativo') {
+                    avatarImg.src = `https://www.gartik.com/avatar.php?nick=${jogador}&app=1&rand=c4747_18&pendente=1`;
+                }
+
+                // Função para decodificar entidades HTML
+                function decodeHTML(html) {
+                    const txt = document.createElement('textarea');
+                    txt.innerHTML = html;
+                    return txt.value;
+                }
+
+                document.getElementById('modalBio').textContent = decodeHTML(data.frase || 'Sem bio');
+                document.getElementById('modalPontos').textContent = `Pontos: ${data.pontos || '0'}`;
+                document.getElementById('modalVitorias').textContent = `Vitórias: ${data.vitorias || '0'}`;
+            })
+            .catch(error => console.error('Erro ao buscar perfil do jogador:', error));
+    }
+
+    if (intervaloAtualizacao) {
+        clearInterval(intervaloAtualizacao);
+    }
+
+    atualizarPerfil();
+    intervaloAtualizacao = setInterval(atualizarPerfil, 800);
+
+        document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('modalOverlay').style.display = 'none';
+        clearInterval(intervaloAtualizacao);
+    });
+
+    document.getElementById('trocaAvatarBtn').addEventListener('click', function () {
+        avatarAtual = 'alternativo';
+        document.getElementById('modalAvatar').src = `https://www.gartik.com/avatar.php?nick=${document.getElementById('modalNomeJogador').textContent}&app=1&rand=c4747_18&pendente=1`;
+    });
+
+    document.getElementById('voltarAvatarBtn').addEventListener('click', function () {
+        avatarAtual = 'original';
+        document.getElementById('modalAvatar').src = `https://www.gartik.com/avatar.php?nick=${document.getElementById('modalNomeJogador').textContent}&app=1&rand=c479102.png`;
+    });
+
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('avatar')) {
+            const jogador = e.target.getAttribute('data-jogador');
+            exibirModalJogador(jogador);
+        }
+    });
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+        document.getElementById('toggleMode').addEventListener('click', toggleDarkMode);
+
+
+
+        atualizarDados();
+        setInterval(atualizarDados, 500);
     </script>
 </body>
 </html>
